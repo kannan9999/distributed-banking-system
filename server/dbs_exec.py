@@ -94,13 +94,15 @@ def sendSMS(accounts, amount, type, date):
 	phone = None
 	body = None
 	if type == 'd':
+		print('DEBUG before query: ', phone)
 		status = executeQuery('''
 			SELECT phone_num
 			FROM CUSTOMERS
 			WHERE account_num={}
-		''',format(accounts[0])
+		'''.format(accounts[0])
 		)
-		phone = '+91' + status[1]
+		phone = '+91' + status[1][0][0]
+		print('DEBUG after query: ', phone)
 		body = ('Sureya bank account XXX' + str(accounts[0]).zfill(3)[-3:] 
 			+ ' was credited for Rs ' + str(amount) + ' on ' + date + '.'
 		)
@@ -110,9 +112,9 @@ def sendSMS(accounts, amount, type, date):
 			SELECT phone_num
 			FROM CUSTOMERS
 			WHERE account_num={}
-		''',format(accounts[0])
+		'''.format(accounts[0])
 		)
-		phone = '+91' + status[1]
+		phone = '+91' + status[1][0][0]
 		body = ('Sureya bank account XXX' + str(accounts[0]).zfill(3)[-3:] 
 			+ ' was debited for Rs ' + str(amount) + ' on ' + date + '.'
 		)
@@ -122,7 +124,7 @@ def sendSMS(accounts, amount, type, date):
 			SELECT phone_num
 			FROM CUSTOMERS
 			WHERE account_num={}
-		''',format(accounts[0])
+		'''.format(accounts[0])
 		)
 		status = executeQuery('''
 			SELECT first_name
@@ -130,17 +132,23 @@ def sendSMS(accounts, amount, type, date):
 			WHERE account_num={}
 		'''.format(accounts[1])
 		)
-		firstName = status[1]
+		firstName = status[1][0][0]
 		status = executeQuery('''
 			SELECT last_name
 			FROM CUSTOMERS
 			WHERE account_num={}
 		'''.format(accounts[1])
 		)
-		lastName = status[1]
+		lastName = status[1][0][0]
 		name = firstName.upper() + ' ' + lastName.upper()
 
-		phone = '+91' + status[1]
+		status = executeQuery('''
+			SELECT phone_num
+			FROM CUSTOMERS
+			WHERE account_num={}
+		'''.format(accounts[1])
+		)
+		phone = '+91' + status[1][0][0]
 		body = ('Sureya bank account XXX' + str(accounts[0]).zfill(3)[-3:] 
 			+ ' was debited for Rs ' + str(amount) + ' on ' + date + '.' 
 			+ ' ' + name + ' credited.'
@@ -152,15 +160,16 @@ def sendSMS(accounts, amount, type, date):
 			SELECT phone_num
 			FROM CUSTOMERS
 			WHERE account_num={}
-		''',format(accounts[1])
+		'''.format(accounts[1])
 		)
-		phone = '+91' + status[1]
+		phone = '+91' + status[1][0][0]
 		body = ('Sureya bank account XXX' + str(accounts[1]).zfill(3)[-3:] 
 			+ ' was credited for Rs ' + str(amount) + ' on ' + date + '.'
 		)
-	
+
+	print('DEBUG: ', phone, body)
 	client.messages.create(
-		from_ ='',
+		from_ ='+15855977357',
 		body=body,
-		phone=phone
+		to=phone
 	)
