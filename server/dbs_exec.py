@@ -86,8 +86,8 @@ def authenticate(accountNumber: int, password: str) -> bool:
 	return len(status[1])>0
 
 def sendSMS(accounts, amount, type, date):
-	account_sid = 'AC2fcdd5f72d68a24beb0681d79e522a42'
-	auth_token = '710d800a059ae7530b4c61da3f78e005'
+	account_sid = 'AC7c7ee6d016f4be04de1438c514dd09cb'
+	auth_token = '391e31c66779b478b28c449ab5a487ae'
 	client = tr.Client(account_sid, auth_token)
 
 	phone = None
@@ -164,7 +164,7 @@ def sendSMS(accounts, amount, type, date):
 			+ ' was credited for Rs ' + str(amount) + ' on ' + date + '.'
 		)
 	client.messages.create(
-		from_ ='+15855977357',
+		from_ ='+12707478857',
 		body=body,
 		to=phone
 	)

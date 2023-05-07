@@ -309,6 +309,8 @@ def depositMenu(accountNumber: int, clientSocket: socket.socket, key: int, detai
 		if sms == 'Y':
 			dbe.sendSMS([accountNumber], amount, 'd', date)
 
+		#PLAYSOUND
+
 		prompt = '\nDeposit was successful. Press any key to continue...'
 		safeSend(clientSocket, prompt, key, details)
 
@@ -360,6 +362,8 @@ def withdrawMenu(accountNumber: int, clientSocket: socket.socket, key: int, deta
 			sms = data[1][0][0]
 			if sms == 'Y':
 				dbe.sendSMS([accountNumber], amount, 'w', date)
+
+			#PLAYSOUND
 
 			prompt = '\nWithdrawal was successful. Press any key to continue...'
 			safeSend(clientSocket, prompt, key, details)
@@ -447,6 +451,8 @@ def transferMenu(accountNumber: int, clientSocket: socket.socket, key: int, deta
 					if sms == 'Y':
 						dbe.sendSMS([accountNumber, theirAccount], amount, 'tr', date)
 
+					#PLAYSOUND
+					
 					prompt = '\nTransfer was successful. Press any key to continue...'
 					safeSend(clientSocket, prompt, key, details)
 				else:
