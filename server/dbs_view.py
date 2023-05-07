@@ -181,6 +181,11 @@ def deleteAccount(clientSocket: socket.socket, key:int, details: tuple) -> None:
 					WHERE account_num={}
 				'''.format(accountNumber)
 				)
+				dbe.executeQuery('''
+					DELETE FROM AUTH
+					WHERE account_num={}
+				'''.format(accountNumber)
+				)
 				prompt = '\nAccount {} was deleted. Press any key...'.format(accountNumber)
 				safeSend(clientSocket, prompt, key, details)
 			else:

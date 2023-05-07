@@ -51,7 +51,7 @@ def createDatabase():
 		CREATE TABLE IF NOT EXISTS AUTH(
 			account_num INTEGER,
 			password varchar(100) NOT NULL,
-			FOREIGN KEY (account_num) REFERENCES customers(account_num) ON DELETE CASCADE
+			FOREIGN KEY (account_num) REFERENCES CUSTOMERS(account_num) ON DELETE CASCADE
 		)
 	''')
 	return status
@@ -83,7 +83,6 @@ def authenticate(accountNumber: int, password: str) -> bool:
 		WHERE account_num={} AND password='{}'
 	'''.format(accountNumber, passhash)
 	)
-	#print('DEBUG: ', status)
 	return len(status[1])>0
 
 def sendSMS(accounts, amount, type, date):
@@ -94,7 +93,6 @@ def sendSMS(accounts, amount, type, date):
 	phone = None
 	body = None
 	if type == 'd':
-		print('DEBUG before query: ', phone)
 		status = executeQuery('''
 			SELECT phone_num
 			FROM CUSTOMERS
@@ -102,7 +100,6 @@ def sendSMS(accounts, amount, type, date):
 		'''.format(accounts[0])
 		)
 		phone = '+91' + status[1][0][0]
-		print('DEBUG after query: ', phone)
 		body = ('Sureya bank account XXX' + str(accounts[0]).zfill(3)[-3:] 
 			+ ' was credited for Rs ' + str(amount) + ' on ' + date + '.'
 		)
@@ -166,8 +163,6 @@ def sendSMS(accounts, amount, type, date):
 		body = ('Sureya bank account XXX' + str(accounts[1]).zfill(3)[-3:] 
 			+ ' was credited for Rs ' + str(amount) + ' on ' + date + '.'
 		)
-
-	print('DEBUG: ', phone, body)
 	client.messages.create(
 		from_ ='+15855977357',
 		body=body,

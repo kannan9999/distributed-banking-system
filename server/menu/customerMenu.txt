@@ -1,8 +1,8 @@
 @CLEAR
 SUREYA BANK CUSTOMER MENU
 -------------------------------
-Account number:	{account_num}
-Balance:		{balance} Rs
+Account number: {account_num}
+Balance: {balance} Rs
 
 Options
 
