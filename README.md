@@ -10,6 +10,11 @@ This was our submission for our Distributed Systems Lab Mini Project, CSE B, Bat
 * [Yashwanth](https://github.com/yashwanth008)
 
 
+[Project Report](https://github.com/geekyprawins/distributed-banking-system/blob/master/DS%20Lab-Mini%20Project%20Report.pdf)
+
+[Presentation Slides](https://www.canva.com/design/DAFiSDQSIIU/9dKfOyBnT_GKr535g9akhQ/edit?utm_content=DAFiSDQSIIU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+
 
 
 ## Contents
