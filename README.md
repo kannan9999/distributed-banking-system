@@ -52,5 +52,5 @@ pip install -r requirements.txt
 First execute the `main.py` in the `server` folder, followed by `main.py` in the
 `client` folder in separate terminals. The client should connect to the server.
 
-Note: You may need to change the twilio account credentials, along with the IP
+**Note**: You may need to change the twilio account credentials, along with the IP
 Addresses hard coded in this project :)
