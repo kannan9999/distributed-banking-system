@@ -86,8 +86,8 @@ def authenticate(accountNumber: int, password: str) -> bool:
 	return len(status[1])>0
 
 def sendSMS(accounts, amount, type, date):
-	account_sid = 'AC7c7ee6d016f4be04de1438c514dd09cb'
-	auth_token = '391e31c66779b478b28c449ab5a487ae'
+	account_sid = 'ACCOUNT_SID'
+	auth_token = 'AUTH_TOKEN'
 	client = tr.Client(account_sid, auth_token)
 
 	phone = None
@@ -164,7 +164,7 @@ def sendSMS(accounts, amount, type, date):
 			+ ' was credited for Rs ' + str(amount) + ' on ' + date + '.'
 		)
 	client.messages.create(
-		from_ ='+12707478857',
+		from_ ='TWILIO_PHONE_NUMBER',
 		body=body,
 		to=phone
 	)
